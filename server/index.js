@@ -664,6 +664,23 @@ app.get('/api/photos/day/:date', async (req, res) => {
   }
 });
 
+// ───────────────────────────────────────────────────────────────
+// 前端静态文件（Vite build 产物）
+// 开发时用 Vite dev server，生产时 express 直接 serve dist/
+// ───────────────────────────────────────────────────────────────
+const DIST_DIR = path.join(__dirname, '..', 'dist');
+if (fsSync.existsSync(DIST_DIR)) {
+  // 静态资源（/assets/*）
+  app.use('/assets', express.static(path.join(DIST_DIR, 'assets')));
+  // 首页 + SPA fallback（所有未匹配路由返回 index.html）
+  app.get(['/', '/gallery', '/gallery/*'], (req, res) => {
+    res.sendFile(path.join(DIST_DIR, 'index.html'));
+  });
+  console.log(`📦 前端静态文件已加载: ${DIST_DIR}`);
+} else {
+  console.log('⚠️  dist/ 目录不存在（运行 npm run build 后再试）');
+}
+
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 后端服务器运行在 http://localhost:${PORT}`);
+  console.log(`🚀 后端服务器运行在 http://0.0.0.0:${PORT}`);
 });
