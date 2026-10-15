@@ -665,15 +665,18 @@ app.get('/api/photos/day/:date', async (req, res) => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// 前端静态文件（Vite build 产物）
-// 开发时用 Vite dev server，生产时 express 直接 serve dist/
+// 前端静态文件（Vite build 产物）— 必须放在所有 API 路由之后
 // ───────────────────────────────────────────────────────────────
 const DIST_DIR = path.join(__dirname, '..', 'dist');
 if (fsSync.existsSync(DIST_DIR)) {
   // 静态资源（/assets/*）
   app.use('/assets', express.static(path.join(DIST_DIR, 'assets')));
-  // 首页 + SPA fallback（所有未匹配路由返回 index.html）
-  app.get(['/', '/gallery', '/gallery/*'], (req, res) => {
+  // SPA catch-all：所有未匹配路由返回 index.html
+  // 用正则避开 /api 和 /photos（它们已经被上面的路由匹配了）
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/photos')) {
+      return next();
+    }
     res.sendFile(path.join(DIST_DIR, 'index.html'));
   });
   console.log(`📦 前端静态文件已加载: ${DIST_DIR}`);
