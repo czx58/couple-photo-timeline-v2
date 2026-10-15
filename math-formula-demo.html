@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>高数公式渲染 Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+    .mode-switch {
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .mode-switch label {
+      font-size: 14px;
+      color: #444;
+    }
+    .toggle-btn {
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .toggle-btn:hover { background: #333; }
+    .formula-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+    .formula-card h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+    .formula {
+      font-size: 18px;
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      overflow-x: auto;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+    }
+    .formula.plain {
+      font-family: "SF Mono", "Consolas", monospace;
+      font-size: 15px;
+      color: #2d3748;
+      white-space: pre-wrap;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      color: #666;
+      background: #f0f0f0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .katex { font-size: 1.1em; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>高数公式渲染 Demo</h1>
+    <p class="subtitle">点击右上角按钮，切换「精美公式」和「纯文本」两种显示效果</p>
+
+    <div class="mode-switch">
+      <label>当前模式：<strong id="modeLabel">精美公式（KaTeX）</strong></label>
+      <button class="toggle-btn" onclick="toggleMode()">切换纯文本模式</button>
+    </div>
+
+    <div class="formula-card">
+      <h3>极限的 ε-δ 定义</h3>
+      <div class="formula" data-plain="∀ε > 0, ∃δ > 0, 当 0 < |x - x₀| < δ 时，有 |f(x) - A| < ε">
+        \[ \forall \varepsilon > 0, \exists \delta > 0, \text{ 当 } 0 < |x - x_0| < \delta \text{ 时，有 } |f(x) - A| < \varepsilon \]
+      </div>
+      <span class="tag">第一章 · 极限</span>
+    </div>
+
+    <div class="formula-card">
+      <h3>导数的定义</h3>
+      <div class="formula" data-plain="f'(x₀) = lim_{h→0} [f(x₀ + h) - f(x₀)] / h">
+        \[ f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h} \]
+      </div>
+      <span class="tag">第二章 · 导数与微分</span>
+    </div>
+
+    <div class="formula-card">
+      <h3>幂函数求导法则</h3>
+      <div class="formula" data-plain="(x^n)' = n · x^(n-1)">
+        \[ (x^n)' = n \cdot x^{n-1} \]
+      </div>
+      <span class="tag">第二章 · 求导公式</span>
+    </div>
+
+    <div class="formula-card">
+      <h3>链式法则</h3>
+      <div class="formula" data-plain="[f(g(x))]' = f'(g(x)) · g'(x)">
+        \[ \bigl[ f(g(x)) \bigr]' = f'(g(x)) \cdot g'(x) \]
+      </div>
+      <span class="tag">第二章 · 复合函数求导</span>
+    </div>
+
+    <div class="formula-card">
+      <h3>不定积分基本公式</h3>
+      <div class="formula" data-plain="∫ x^n dx = x^(n+1)/(n+1) + C  (n ≠ -1)">
+        \[ \int x^n \, dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1) \]
+      </div>
+      <span class="tag">第三章 · 不定积分</span>
+    </div>
+
+    <div class="formula-card">
+      <h3>牛顿-莱布尼茨公式</h3>
+      <div class="formula" data-plain="∫_a^b f(x) dx = F(b) - F(a)，其中 F'(x) = f(x)">
+        \[ \int_a^b f(x) \, dx = F(b) - F(a), \quad \text{其中 } F'(x) = f(x) \]
+      </div>
+      <span class="tag">第五章 · 定积分</span>
+    </div>
+
+    <div class="formula-card">
+      <h3>洛必达法则</h3>
+      <div class="formula" data-plain="lim_{x→a} f(x)/g(x) = lim_{x→a} f'(x)/g'(x)  （0/0 或 ∞/∞ 型）">
+        \[ \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)} \quad \text{（} \frac{0}{0} \text{ 或 } \frac{\infty}{\infty} \text{ 型）} \]
+      </div>
+      <span class="tag">第三章 · 中值定理与导数应用</span>
+    </div>
+  </div>
+
+  <script>
+    let isPlain = false;
+
+    function renderMath() {
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function toggleMode() {
+      isPlain = !isPlain;
+      const label = document.getElementById('modeLabel');
+      const btn = document.querySelector('.toggle-btn');
+      const formulas = document.querySelectorAll('.formula');
+
+      if (isPlain) {
+        label.textContent = '纯文本模式';
+        btn.textContent = '切换精美公式模式';
+        formulas.forEach(el => {
+          el.classList.add('plain');
+          el.textContent = el.dataset.plain;
+        });
+      } else {
+        label.textContent = '精美公式（KaTeX）';
+        btn.textContent = '切换纯文本模式';
+        formulas.forEach(el => {
+          el.classList.remove('plain');
+          el.innerHTML = el.dataset.latex;
+        });
+        renderMath();
+      }
+    }
+
+    // 保存原始 LaTeX 内容
+    document.querySelectorAll('.formula').forEach(el => {
+      el.dataset.latex = el.innerHTML.trim();
+    });
+
+    // 页面加载后渲染 KaTeX
+    window.addEventListener('load', renderMath);
+  </script>
+</body>
+</html>

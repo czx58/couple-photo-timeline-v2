@@ -1,0 +1,264 @@
+{
+  "recipes": [
+    {
+      "id": "tomato-scrambled-egg",
+      "title": "番茄炒蛋",
+      "scenes": ["一人快手餐", "能量餐"],
+      "difficulty": 1,
+      "baseServings": 1,
+      "defaultMildFactor": 0.85,
+      "ingredients": [
+        {
+          "id": "egg",
+          "name": "鸡蛋",
+          "category": "meat",
+          "standardAmount": 100,
+          "isSeasoning": false,
+          "freshness": {
+            "shelfLife": "冰箱能放 3-5 周，常温 1 周",
+            "checkTip": "放水里：沉下去=新鲜，浮起来=坏了"
+          }
+        },
+        {
+          "id": "tomato",
+          "name": "大番茄",
+          "category": "vegetable",
+          "standardAmount": 150,
+          "isSeasoning": false,
+          "freshness": {
+            "shelfLife": "常温放 2-3 天，冰箱放 1 周",
+            "checkTip": "捏着软塌塌有汁水流出=快坏了"
+          }
+        },
+        {
+          "id": "oil",
+          "name": "食用油",
+          "category": "seasoning",
+          "standardAmount": 15,
+          "isSeasoning": true,
+          "capAmount": {
+            "level": "flat",
+            "capRef": "≈1瓷勺/≈15ml"
+          }
+        },
+        {
+          "id": "salt",
+          "name": "盐",
+          "category": "seasoning",
+          "standardAmount": 3,
+          "isSeasoning": true,
+          "capAmount": {
+            "level": "half",
+            "capRef": "≈3克"
+          }
+        },
+        {
+          "id": "sugar",
+          "name": "白糖",
+          "category": "seasoning",
+          "standardAmount": 6,
+          "isSeasoning": true,
+          "capAmount": {
+            "level": "full",
+            "capRef": "≈6克"
+          }
+        }
+      ],
+      "prepOrder": [
+        "先打蛋搅散，放一点点盐（约 1/4 盖）",
+        "切番茄：从顶部十字划一刀，再切片",
+        "准备好盘子，盛蛋用"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "锅里倒油，铺满锅底就行",
+          "heatLevel": "小火",
+          "heatTranslation": "电磁炉 400W",
+          "duration": "1分钟"
+        },
+        {
+          "order": 2,
+          "action": "油热了下蛋液，不要立刻搅",
+          "heatLevel": "中火",
+          "heatTranslation": "电磁炉 800W",
+          "judgment": "蛋液底部凝固=刚好",
+          "duration": "30秒"
+        },
+        {
+          "order": 3,
+          "action": "用铲子划散，鸡蛋刚凝固就盛出到盘子里",
+          "judgment": "不要炒到变黄色变老",
+          "duration": "20秒"
+        },
+        {
+          "order": 4,
+          "action": "锅里再补一点油（约半盖），下番茄",
+          "heatLevel": "中火",
+          "heatTranslation": "电磁炉 800W",
+          "duration": "2分钟"
+        },
+        {
+          "order": 5,
+          "action": "加盐和糖，翻炒几下，等番茄出汁咕嘟响",
+          "judgment": "番茄出汁咕嘟响=够了，别炒烂",
+          "duration": "1分钟"
+        },
+        {
+          "order": 6,
+          "action": "把刚才盛出的鸡蛋倒回锅里，翻两下裹上番茄汁，关火",
+          "duration": "20秒"
+        }
+      ],
+      "tips": {
+        "tooSalty": "加半勺糖或扔几片番茄进去吸盐",
+        "burnt": "立刻关火，别去搅糊的部分，上面没糊的还能吃",
+        "other": ["鸡蛋一定要先盛出来，不然会变老"]
+      }
+    },
+    {
+      "id": "cola-chicken-wings",
+      "title": "可乐鸡翅",
+      "scenes": ["周末硬菜", "展示用"],
+      "difficulty": 2,
+      "baseServings": 1,
+      "defaultMildFactor": 0.9,
+      "ingredients": [
+        {
+          "id": "chicken-wing",
+          "name": "鸡翅中",
+          "category": "meat",
+          "standardAmount": 150,
+          "isSeasoning": false,
+          "freshness": {
+            "shelfLife": "冰箱冷冻能放 3 个月，冷藏 2 天",
+            "checkTip": "颜色发暗有黏糊=不新鲜"
+          }
+        },
+        {
+          "id": "cola",
+          "name": "可乐",
+          "category": "other",
+          "standardAmount": 200,
+          "isSeasoning": false,
+          "freshness": {
+            "shelfLife": "常温阴凉处 6 个月",
+            "checkTip": "开罐后一次用完"
+          }
+        },
+        {
+          "id": "ginger",
+          "name": "生姜",
+          "category": "vegetable",
+          "standardAmount": 10,
+          "isSeasoning": false,
+          "freshness": {
+            "shelfLife": "常温 1 周，冰箱 2 周",
+            "checkTip": "发芽发软=要坏了，切掉坏的还能用"
+          }
+        },
+        {
+          "id": "oil",
+          "name": "食用油",
+          "category": "seasoning",
+          "standardAmount": 10,
+          "isSeasoning": true,
+          "capAmount": {
+            "level": "half",
+            "capRef": "≈半瓷勺/≈10ml"
+          }
+        },
+        {
+          "id": "soy-sauce-light",
+          "name": "生抽",
+          "category": "seasoning",
+          "standardAmount": 12,
+          "isSeasoning": true,
+          "capAmount": {
+            "level": "full",
+            "capRef": "≈1瓶盖/≈12ml"
+          }
+        },
+        {
+          "id": "soy-sauce-dark",
+          "name": "老抽",
+          "category": "seasoning",
+          "standardAmount": 3,
+          "isSeasoning": true,
+          "capAmount": {
+            "level": "half",
+            "capRef": "≈半瓶盖/≈3ml（只上色少放）"
+          }
+        },
+        {
+          "id": "salt",
+          "name": "盐",
+          "category": "seasoning",
+          "standardAmount": 2,
+          "isSeasoning": true,
+          "capAmount": {
+            "level": "flat",
+            "capRef": "≈2克/平盖少半勺"
+          }
+        }
+      ],
+      "prepOrder": [
+        "鸡翅正反面划两刀（让汁进去）",
+        "冷水下锅焯水，水开捞出冲干净",
+        "切 3-4 片姜"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "锅里倒油，放姜片小火煸出香味",
+          "heatLevel": "小火",
+          "heatTranslation": "电磁炉 400W",
+          "judgment": "姜片变金黄就行，别糊",
+          "duration": "1分钟"
+        },
+        {
+          "order": 2,
+          "action": "放鸡翅，小火慢煎两面都变金黄",
+          "heatLevel": "小火",
+          "heatTranslation": "电磁炉 400W",
+          "judgment": "两面都金黄金黄的=可以了",
+          "duration": "每面 3 分钟，共 6 分钟"
+        },
+        {
+          "order": 3,
+          "action": "倒生抽和老抽，翻几下让每个鸡翅都上色",
+          "heatLevel": "中火",
+          "heatTranslation": "电磁炉 800W",
+          "duration": "1分钟"
+        },
+        {
+          "order": 4,
+          "action": "倒可乐，刚好没过鸡翅。不够加水。撒一点点盐",
+          "heatLevel": "大火",
+          "heatTranslation": "电磁炉 1600W",
+          "duration": "煮开"
+        },
+        {
+          "order": 5,
+          "action": "转小火盖盖子焖 10 分钟",
+          "heatLevel": "小火",
+          "heatTranslation": "电磁炉 400W",
+          "duration": "10分钟"
+        },
+        {
+          "order": 6,
+          "action": "开盖，开大火收汁，期间多翻几次防糊",
+          "heatLevel": "大火",
+          "heatTranslation": "电磁炉 1600W",
+          "judgment": "汁变浓稠裹在鸡翅上=关火",
+          "duration": "3-5分钟"
+        }
+      ],
+      "tips": {
+        "tooSalty": "倒一点可乐或热水再煮一会儿，稀释一下",
+        "burnt": "立刻关火，把没糊的鸡翅挑出来，糊底别碰",
+        "other": ["鸡翅划两刀才能入味", "焯水能去腥味，别省"]
+      }
+    }
+  ]
+}
