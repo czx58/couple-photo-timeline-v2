@@ -665,15 +665,17 @@ app.get('/api/photos/day/:date', async (req, res) => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// 前端静态文件（Vite build 产物）— 必须放在所有 API 路由之后
+// 前端静态文件 — 绕过 path-to-regexp，用原生中间件
 // ───────────────────────────────────────────────────────────────
 const DIST_DIR = path.join(__dirname, '..', 'dist');
 if (fsSync.existsSync(DIST_DIR)) {
-  // 静态资源（/assets/*）
+  // /assets/* 静态资源
   app.use('/assets', express.static(path.join(DIST_DIR, 'assets')));
-  // SPA catch-all：所有未匹配路由返回 index.html
-  // 用正则避开 /api 和 /photos（它们已经被上面的路由匹配了）
-  app.get('*', (req, res, next) => {
+  // /index.html 根文件
+  app.use('/index.html', express.static(path.join(DIST_DIR, 'index.html')));
+  // SPA catch-all：app.use 不带路径 → 直接跑这个中间件（不走 path-to-regexp）
+  app.use((req, res, next) => {
+    // API 和 photos 已经有上面的路由处理了，能走到这里说明是 SPA 路由
     if (req.path.startsWith('/api') || req.path.startsWith('/photos')) {
       return next();
     }
