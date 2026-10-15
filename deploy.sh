@@ -5,9 +5,9 @@ set -e
 APP_DIR="/opt/calculus-site"
 DB_NAME="calculus"
 DB_USER="calculus"
-DB_PASS="calculus_db_pass_2024"
-SESSION_SECRET="calculus-helper-session-secret-2024-safe-string"
-DEEPSEEK_API_KEY="sk-05ef10715205411184a84b09e6c65461"
+DB_PASS="${DB_PASS:-changeme}"
+SESSION_SECRET="${SESSION_SECRET:-changeme}"
+DEEPSEEK_API_KEY="${DEEPSEEK_API_KEY:-}"
 APP_NAME="Calculus Helper"
 
 # 1. 关闭 SELinux
